@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>黔东南侗乡秘境之旅 · 2026五一</title>
+<meta name="description" content="一家三口自驾 · 肇兴侗寨 · 堂安梯田 · 镇远古城">
+<style>
+  @import url('https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  
+  body {
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', Georgia, serif;
+    background: #f5f0e8;
+    color: #2a2420;
+    max-width: 500px;
+    margin: 0 auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #1a2e1a 0%, #2d4a2d 40%, #1a3a4a 100%);
+    color: #f5f0e8;
+    padding: 32px 20px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0.05;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, #fff 20px, #fff 21px);
+  }
+  .header-inner { position: relative; }
+  .header-sub { font-size: 11px; letter-spacing: 5px; opacity: 0.6; margin-bottom: 6px; font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .header h1 { font-size: 24px; font-weight: 700; margin: 0 0 4px; letter-spacing: 2px; }
+  .header-route { font-size: 13px; opacity: 0.75; }
+  .header-meta { display: flex; justify-content: center; gap: 14px; margin-top: 12px; font-size: 11px; opacity: 0.6; font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; flex-wrap: wrap; }
+
+  .tabs {
+    display: flex;
+    background: #ebe5d9;
+    border-bottom: 1px solid #d4cabb;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .tab {
+    flex: 1;
+    padding: 12px 4px 10px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+    border-bottom: 3px solid transparent;
+    transition: all 0.25s;
+  }
+  .tab.active { background: #f5f0e8; }
+  .tab-day { font-size: 10px; opacity: 0.5; font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .tab-date { font-size: 11.5px; font-weight: 600; color: #8a8070; margin-top: 2px; }
+  .tab.active .tab-date { font-weight: 700; }
+
+  .day-content { padding: 16px 14px 20px; display: none; }
+  .day-content.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .day-header {
+    border-radius: 12px;
+    color: #f5f0e8;
+    padding: 16px 16px 14px;
+    margin-bottom: 16px;
+  }
+  .day-header-date { font-size: 11px; opacity: 0.7; margin-bottom: 3px; font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .day-header h2 { font-size: 20px; font-weight: 700; margin: 0 0 3px; letter-spacing: 1px; }
+  .day-header-tagline { font-size: 13px; opacity: 0.8; font-style: italic; }
+  .day-header-meta { display: flex; gap: 12px; margin-top: 10px; font-size: 11px; opacity: 0.65; font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; flex-wrap: wrap; }
+  .day-header-route { font-size: 10px; opacity: 0.55; margin-top: 6px; font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+
+  .timeline-item { display: flex; gap: 10px; margin-bottom: 2px; }
+  .tl-time { width: 44px; flex-shrink: 0; text-align: right; padding-top: 2px; }
+  .tl-time span { font-size: 12px; font-weight: 600; font-family: 'Courier New', monospace; }
+  .tl-dot-col { width: 26px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; }
+  .tl-dot {
+    width: 26px; height: 26px; border-radius: 50%; background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; flex-shrink: 0;
+  }
+  .tl-line { width: 2px; flex: 1; min-height: 16px; }
+  .tl-card {
+    flex: 1; background: #fff; border-radius: 10px;
+    padding: 10px 12px; margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid #ebe5d9;
+  }
+  .tl-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+  .tl-card p { font-size: 12px; line-height: 1.7; color: #5a5040; font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+
+  .tips-box { margin-top: 16px; border-radius: 10px; padding: 12px 14px; }
+  .tips-title { font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+  .tips-item { font-size: 11.5px; line-height: 1.6; color: #5a5040; font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; padding-left: 12px; position: relative; margin-bottom: 2px; }
+  .tips-item::before { content: '·'; position: absolute; left: 0; opacity: 0.4; }
+
+  .section-btn {
+    width: 100%; padding: 14px 16px; background: #fff;
+    border: 1px solid #ebe5d9; cursor: pointer;
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif; text-align: left;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .section-btn-title { display: flex; justify-content: space-between; align-items: center; }
+  .section-btn-title span:first-child { font-size: 14px; font-weight: 700; }
+  .section-btn-title span:last-child { font-size: 12px; color: #2d5016; font-weight: 600; }
+  .section-btn-sub { font-size: 12px; color: #8a8070; margin-top: 4px; font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+
+  .budget-panel { background: #fff; padding: 4px 16px 14px; border: 1px solid #ebe5d9; border-top: 1px dashed #ebe5d9; display: none; border-radius: 0 0 12px 12px; }
+  .budget-panel.open { display: block; animation: fadeIn 0.25s ease; }
+  .budget-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid #f0ebe0; }
+  .budget-row:last-of-type { border-bottom: none; }
+  .budget-row .label { font-size: 13px; font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  .budget-row .note { font-size: 10px; color: #aaa; font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; margin-top: 1px; }
+  .budget-row .cost { font-size: 13px; font-weight: 600; font-family: 'Courier New', monospace; white-space: nowrap; margin-left: 12px; }
+  .budget-row .cost.free { color: #2d5016; }
+  .budget-total { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0 4px; margin-top: 8px; border-top: 2px solid #2d5016; }
+
+  details { background: #fff; border-radius: 12px; border: 1px solid #ebe5d9; }
+  summary { padding: 12px 16px; cursor: pointer; font-size: 13px; font-weight: 700; font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  .pack-content { padding: 0 16px 14px; font-size: 12px; line-height: 2; color: #5a5040; font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+
+  .footer {
+    text-align: center; padding: 20px 16px 32px;
+    font-size: 11px; color: #b0a89a; font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-sub">2026 · 五一 · 一家三口自驾</div>
+    <h1>黔东南侗乡秘境之旅</h1>
+    <div class="header-route">肇兴侗寨 · 堂安梯田 · 镇远古城</div>
+    <div class="header-meta">
+      <span>📅 5.2下午 → 5.5傍晚</span>
+      <span>🚗 约1400km</span>
+      <span>🆓 高速全免</span>
+    </div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs" id="tabs"></div>
+
+<!-- Day Contents (generated by JS) -->
+<div id="days-container"></div>
+
+<!-- Budget -->
+<div style="padding: 0 14px 16px;">
+  <button class="section-btn" id="budget-btn" style="border-radius: 12px;" onclick="toggleBudget()">
+    <div class="section-btn-title">
+      <span>💰 全程费用明细</span>
+      <span id="budget-toggle">展开 ▼</span>
+    </div>
+    <div class="section-btn-sub" id="budget-sub">三人合计约 3100-4420元 · 人均约 1040-1470元</div>
+  </button>
+  <div class="budget-panel" id="budget-panel"></div>
+</div>
+
+<!-- Packing -->
+<div style="padding: 0 14px 16px;">
+  <details>
+    <summary>🎒 装备清单 + 注意事项</summary>
+    <div class="pack-content">
+      <b>衣物：</b>薄外套（山区早晚凉）、防晒衣、运动鞋（堂安徒步）<br>
+      <b>车载：</b>离线地图📍、行车记录仪、车载充电器、零食饮水<br>
+      <b>随身：</b>充电宝、折叠伞🌧️、防晒霜+墨镜、驱蚊液<br>
+      <b>药品：</b>晕车药、肠胃药、创可贴<br>
+      <b>证件：</b>身份证（必带）、驾驶证、行驶证<br><br>
+      <b style="color:#8b2500;">⚠️ 关键提醒：</b><br>
+      · 5月5日24:00前必须驶离高速收费站<br>
+      · 黔东南5月多雨，山路减速开雾灯<br>
+      · 侗寨吊脚楼木质结构，严禁明火<br>
+      · 拍人先打招呼，尊重当地居民
+    </div>
+  </details>
+</div>
+
+<div class="footer">
+  ✦ 黔东南侗乡秘境 · 4天3晚自驾攻略 ✦<br>
+  重庆出发 → 遵义 → 肇兴侗寨 → 堂安 → 镇远古城 → 重庆
+</div>
+
+<script>
+const DAYS = [
+  {
+    date: "5月2日（周六）下午", title: "重庆 → 遵义", tagline: "半日赶路，夜宿红城",
+    drive: "约280km｜3h", route: "重庆 → G75兰海高速 → 遵义",
+    color: "#8b2500", stay: "遵义市区酒店（200-350元/晚）",
+    timeline: [
+      ["15:00","🚗","重庆出发","午饭后从容出发。走G75兰海高速直奔遵义，路况好距离短。五一第二天出城方向车流已明显回落，全程约280km。"],
+      ["16:30","⛽","途中tips","五一高速全免费（5.1-5.5）。如果油不够在綦江或桐梓服务区加油，出发前加满最省事。"],
+      ["18:00","🏨","抵达遵义","导航至遵义市中心红花岗区。住在老城/丁字口附近，步行可达遵义会议旧址。经济型150-250元，舒适型300-400元。"],
+      ["18:30","🍲","遵义晚餐","必吃遵义羊肉粉（老字号「刘二妈」）或豆花面。也可以去捞沙巷夜市——恋爱豆腐果、洋芋粑粑、丝娃娃，全家预热贵州味道。"],
+      ["20:00","🌃","散步（可选）","沿凤凰山广场走一圈，遵义会议旧址晚上有灯光，拍照好看。早点回酒店，明天要早起。"],
+    ],
+    tips: ["🆓 5.1-5.5高速全免，今天0过路费","油费约160元（280km×8L/100km×7.6元/L）","遵义住宿五一涨价，提前订好","车上备好零食、水、充电线"],
+  },
+  {
+    date: "5月3日（周日）", title: "遵义 → 肇兴侗寨", tagline: "穿越黔中，夜入侗乡",
+    drive: "约480km｜5.5h", route: "遵义 → 贵阳绕城 → G76厦蓉高速 → 三穗 → 黎平 → 肇兴",
+    color: "#2d5016", stay: "肇兴侗寨客栈（300-500元/晚）",
+    timeline: [
+      ["07:00","🚗","遵义出发","吃完早餐7点出发。遵义到贵阳1.5h，走贵阳绕城不进城，转G76往三穗/黎平方向。"],
+      ["09:30","☕","凯里服务区","开了2.5小时，休息活动。过凯里后车流骤降，进入黔东南山区，风景开始惊艳。"],
+      ["10:30","🏔️","三穗→黎平","弯道增多但沿途梯田和侗寨开始出现，云雾在山间飘荡，这段路本身就是风景线。"],
+      ["12:30","🏘️","抵达肇兴侗寨","导航到「肇兴侗寨售票处」。停车场30元/天。坐景区公交进寨10元/人。门票80元/人在线提前买。联系客栈老板来接。"],
+      ["13:00","🍲","入住+午餐","推荐临河客栈（古歌秘境/水岸肇兴/那时花开等）。在河边吃酸汤鱼、腌肉、糯米饭。侗族酸汤用米汤发酵，比苗族更柔和。"],
+      ["14:30","🎨","寨内漫游","逛五座鼓楼（仁义礼智信），体验蜡染/扎染（30-50元/人），参观侗族文化展示中心（免费）。肇兴比西江苗寨安静很多。"],
+      ["16:30","🎵","侗族大歌","每天有定时民俗演出（含在门票内）。世界非遗——多声部无指挥无伴奏合唱，全家一起听非常震撼。"],
+      ["18:30","🍖","晚餐","临河露台餐厅，侗家糯米酿鱼和烤香猪，配自酿米酒（微甜不上头），看对岸鼓楼亮灯。"],
+      ["20:00","🌙","夜游+篝火","鼓楼灯光亮起后沿河散步拍倒影。五一可能有篝火晚会，跟当地人跳「多耶舞」（手拉手围圈踏步），全家都能参与。"],
+    ],
+    tips: ["🆓 高速全程免费","门票：80×3人=240元，网上提前买","客栈一定提前订！五一很抢手","下载离线地图，黎平段信号弱","五月黔东南多雨，随身带折叠伞"],
+  },
+  {
+    date: "5月4日（周一）", title: "堂安侗寨 → 镇远古城", tagline: "梯田徒步，夜泊古镇",
+    drive: "约230km｜3.5h", route: "肇兴 → 堂安（班车/徒步）→ 肇兴 → 黎平 → 三穗 → 镇远",
+    color: "#1a3a4a", stay: "镇远古城河景客栈（250-450元/晚）",
+    timeline: [
+      ["06:30","🌄","晨雾拍照","肇兴清晨薄雾缭绕，鼓楼若隐若现，全天最美光线。在寨门和风雨桥附近拍几张。"],
+      ["07:30","🥣","早餐","侗家油茶泡饭——茶叶和糯米爆花一起熬煮，咸香开胃。"],
+      ["08:00","🚐","班车上堂安","一家三口坐班车上山（20元/人含返程，约20分钟）。到堂安后慢慢玩。体力好可以走回肇兴（下坡7km约2h），否则坐班车回。"],
+      ["08:30","🏔️","堂安侗寨","700年历史「没有围墙的博物馆」。比肇兴更安静更原始：瓢井汲水、禾仓晒谷、鼓楼戏台。观景台俯瞰堂安梯田——5月灌水期水田如镜。游客极少。"],
+      ["10:00","🔽","下山","坐班车或徒步回肇兴（带好门票，回寨检票）。徒步经过厦格侗寨时找「梯田景观步道」——隐藏的绝美梯田，几乎无人。"],
+      ["11:00","🍜","午餐+告别","回寨吃午饭，侗族烤鱼或腊肉炒笋。最后在小巷溜达一圈，买点侗布手工艺品。"],
+      ["13:00","🚗","出发→镇远","走黎平→三穗→镇远方向，约230km，3-3.5h。沿途山景秀丽。"],
+      ["16:30","🏯","抵达镇远古城","2000年历史古城，舞阳河S形穿城，两岸明清建筑依山而建。入住河边客栈，推窗看河景。"],
+      ["17:00","🚶","古城漫步","祝圣桥（标志性古桥）→ 四方井巷（古巷幽深）→ 河边码头。镇远游客比凤凰少很多。"],
+      ["18:30","🍲","镇远晚餐","镇远酸汤鱼是一绝。油炸粑配甜酒。河边吃饭看对岸灯火亮起，非常惬意。"],
+      ["20:00","✨","舞阳河夜景","镇远夜景是贵州最美之一，明清古建倒映河面。全家沿河散步，为旅程画上完美句号。"],
+    ],
+    tips: ["🆓 高速依然免费","堂安班车：20元/人含返程（3人=60元）","堂安有台阶坡路，穿防滑运动鞋","镇远古城不要门票","镇远住宿选临河房间，夜景加分"],
+  },
+  {
+    date: "5月5日（周二）", title: "镇远半日游 → 回家", tagline: "古城晨光，满载归途",
+    drive: "约450km｜5h", route: "镇远 → G56杭瑞高速 → 遵义 → G75兰海高速 → 重庆",
+    color: "#3d1a4a", stay: "回到温暖的家 🏠",
+    timeline: [
+      ["07:00","🌅","清晨镇远","早起沿河走走。清晨没有游客、薄雾笼罩河面，烟火气最浓——早餐店冒热气，老人在河边晨练。"],
+      ["07:30","🥣","早餐","巷子里的粉面店，来碗镇远米豆腐或素粉配辣椒蘸水。简单地道暖胃。"],
+      ["08:00","🏯","青龙洞古建筑群","镇远最值得看的景点——贴在悬崖上的古建筑群，融合儒释道三教。登顶俯瞰舞阳河S弯全景，网上镇远经典角度都出自这里。门票约60元/人，1-1.5h。"],
+      ["09:30","🛍️","古巷采买","手工银饰、苗绣比景区便宜。买苗族酸汤包、辣椒面当手信。"],
+      ["10:30","🚗","出发回家","镇远→G56→遵义→G75→重庆，约450km。5月4日才是返程最高峰，今天路况顺畅。"],
+      ["12:30","🍜","遵义午餐","恰好到遵义附近，再吃一顿遵义虾子羊肉粉。或在服务区快速解决。"],
+      ["13:30","🛣️","遵义→重庆","最后2.5h。⚠️ 必须在5月5日24:00前驶离高速收费站，否则全程按正常收费！下午回很充裕。"],
+      ["16:00","🏠","到家！","四天三晚黔东南之旅圆满结束。泡杯茶、整理照片，回味侗乡和古城的美好。"],
+    ],
+    tips: ["⚠️ 5月5日24:00前必须下高速","青龙洞有陡峭台阶，注意安全","返程油箱在镇远或遵义加满","🆓 高速依然免费，全程省约600-700元"],
+  },
+];
+
+const BUDGET = [
+  { item: "油费（全程约1400km）", cost: "约 850元", note: "92#，8L/100km，7.6元/L" },
+  { item: "高速通行费", cost: "0元 🆓", note: "五一免费（5.1-5.5）", free: true },
+  { item: "住宿 3晚", cost: "约 750-1300元", note: "遵义 + 肇兴 + 镇远" },
+  { item: "景区门票（×3人）", cost: "约 480-540元", note: "肇兴240 + 堂安60 + 青龙洞180" },
+  { item: "餐饮 4天（3人）", cost: "约 800-1200元", note: "每餐约60-100元/人" },
+  { item: "停车 + 景交", cost: "约 130元", note: "肇兴停车30 + 景交30等" },
+  { item: "蜡染等体验", cost: "约 100-200元", note: "可选项目" },
+];
+
+let activeDay = 0;
+let budgetOpen = false;
+
+function renderTabs() {
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = DAYS.map((d, i) => `
+    <button class="tab ${i === activeDay ? 'active' : ''}" onclick="switchDay(${i})" style="${i === activeDay ? `border-bottom-color:${d.color}` : ''}">
+      <div class="tab-day">Day ${i + 1}</div>
+      <div class="tab-date" style="color:${i === activeDay ? d.color : '#8a8070'}">${d.date.split('（')[0]}</div>
+    </button>
+  `).join('');
+}
+
+function renderDays() {
+  const container = document.getElementById('days-container');
+  container.innerHTML = DAYS.map((d, i) => `
+    <div class="day-content ${i === activeDay ? 'active' : ''}" id="day-${i}">
+      <div class="day-header" style="background:linear-gradient(135deg,${d.color},${d.color}dd)">
+        <div class="day-header-date">${d.date}</div>
+        <h2>${d.title}</h2>
+        <div class="day-header-tagline">${d.tagline}</div>
+        <div class="day-header-meta">
+          <span>🚗 ${d.drive}</span>
+          <span>🛏️ ${d.stay}</span>
+        </div>
+        <div class="day-header-route">${d.route}</div>
+      </div>
+      ${d.timeline.map((t, j) => `
+        <div class="timeline-item">
+          <div class="tl-time"><span style="color:${d.color}">${t[0]}</span></div>
+          <div class="tl-dot-col">
+            <div class="tl-dot" style="border:2px solid ${d.color}30">${t[1]}</div>
+            ${j < d.timeline.length - 1 ? `<div class="tl-line" style="background:${d.color}18"></div>` : ''}
+          </div>
+          <div class="tl-card">
+            <h3>${t[2]}</h3>
+            <p>${t[3]}</p>
+          </div>
+        </div>
+      `).join('')}
+      <div class="tips-box" style="background:${d.color}08;border:1px solid ${d.color}18">
+        <div class="tips-title" style="color:${d.color}">⚡ 当日提示</div>
+        ${d.tips.map(t => `<div class="tips-item">${t}</div>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderBudget() {
+  document.getElementById('budget-panel').innerHTML = `
+    ${BUDGET.map((b, i) => `
+      <div class="budget-row">
+        <div>
+          <div class="label">${b.item}</div>
+          <div class="note">${b.note}</div>
+        </div>
+        <span class="cost ${b.free ? 'free' : ''}">${b.cost}</span>
+      </div>
+    `).join('')}
+    <div class="budget-total">
+      <div>
+        <div style="font-size:14px;font-weight:700">三人合计</div>
+        <div style="font-size:11px;color:#8a8070;font-family:'Noto Sans SC',sans-serif">人均约 1040-1470 元</div>
+      </div>
+      <span style="font-size:15px;font-weight:700;color:#2d5016">约 3100-4420 元</span>
+    </div>
+  `;
+}
+
+function switchDay(i) {
+  activeDay = i;
+  renderTabs();
+  document.querySelectorAll('.day-content').forEach((el, j) => {
+    el.classList.toggle('active', j === i);
+  });
+}
+
+function toggleBudget() {
+  budgetOpen = !budgetOpen;
+  const panel = document.getElementById('budget-panel');
+  const btn = document.getElementById('budget-btn');
+  const toggle = document.getElementById('budget-toggle');
+  const sub = document.getElementById('budget-sub');
+  panel.classList.toggle('open', budgetOpen);
+  btn.style.borderRadius = budgetOpen ? '12px 12px 0 0' : '12px';
+  toggle.textContent = budgetOpen ? '收起 ▲' : '展开 ▼';
+  sub.style.display = budgetOpen ? 'none' : 'block';
+}
+
+renderTabs();
+renderDays();
+renderBudget();
+</script>
+</body>
+</html>
